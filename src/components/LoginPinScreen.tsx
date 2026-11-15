@@ -57,7 +57,7 @@ export const LoginPinScreen: React.FC<LoginPinScreenProps> = ({
               <QrCode className="w-4 h-4" aria-hidden="true" />
             </span>
             <span className="text-base sm:text-lg font-bold tracking-tight text-slate-900">
-              Izin Aspura Peka MAN Batam
+              Izin Aspura PK MAN Batam
             </span>
           </div>
           <span className="text-xs sm:text-sm text-slate-500 whitespace-nowrap shrink-0">
