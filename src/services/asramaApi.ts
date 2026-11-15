@@ -6,8 +6,7 @@ import type {
 } from '../types/asrama';
 
 export const API_URL =
-  const API_URL = 'https://script.google.com/macros/s/AKfycbxegIquF5e2YFWFNVJ3C--HMPRdimuzlh8fpa-7O8W5VvByRPWZQtMS6mkfDWsKRu5U/exec';
-  
+  'https://script.google.com/macros/s/AKfycbxegIquF5e2YFWFNVJ3C--HMPRdimuzlh8fpa-7O8W5VvByRPWZQtMS6mkfDWsKRu5U/exec';
 
 export async function callAsramaAPI<T>(
   pin: string,
@@ -30,7 +29,10 @@ export function loginPetugas(pin: string): Promise<LoginResponse> {
   return callAsramaAPI<LoginResponse>(pin, { action: 'login' });
 }
 
-export function cekSiswaByQr(pin: string, kodeQr: string): Promise<CekSiswaResponse> {
+export function cekSiswaByQr(
+  pin: string,
+  kodeQr: string
+): Promise<CekSiswaResponse> {
   return callAsramaAPI<CekSiswaResponse>(pin, {
     action: 'cek_siswa',
     kode_qr: kodeQr,
@@ -57,16 +59,24 @@ export function playScanBeep(): void {
   try {
     const AudioCtx =
       window.AudioContext ||
-      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      (window as unknown as {
+        webkitAudioContext: typeof AudioContext;
+      }).webkitAudioContext;
+
     if (!AudioCtx) return;
 
     const ctx = new AudioCtx();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
+
     osc.type = 'sine';
     osc.frequency.setValueAtTime(880, ctx.currentTime);
     gain.gain.setValueAtTime(0.18, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      ctx.currentTime + 0.15
+    );
+
     osc.connect(gain);
     gain.connect(ctx.destination);
     osc.start();
